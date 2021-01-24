@@ -1,0 +1,8 @@
+
+{% load menu_tag %}
+
+<ul class="list-unstyled ps-3 collapse" id="{{ item.parent }}">
+{% for item in item.items.all %}
+  <li><a class="d-inline-flex align-items-center rounded" href="{{ item.get_url }}">{{ item.title }}</a></li>
+  {% endfor %}
+</ul>

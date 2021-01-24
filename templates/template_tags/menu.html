@@ -1,0 +1,21 @@
+
+{% load menu_tag %}
+
+<aside class="bd-aside sticky-xl-top text-muted align-self-start mb-3 mb-xl-5 px-2">
+  <h2 class="h6 pt-4 pb-3 mb-4 border-bottom"><a href="{{ menu.get_full_path }}" style="text-decoration: none;">{{ menu.title }}</a></h2>
+  <nav class="small" id="toc">
+    <ul class="list-unstyled">
+      {% with items=menu.items.all %}
+      {% for item in items %}
+      {% if item.items.all %}
+      <li class="my-2">
+        <button class="btn d-inline-flex align-items-center collapsed  btn active" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#{{ item.parent }}" aria-controls="{{ item.parent}}">{{ item.title }}</button>
+        {% draw_dropdown item %}
+      </li>
+      {% endif %}
+      {% endfor %}
+      {% endwith %}
+      </li>
+    </ul>
+  </nav>
+</aside>
